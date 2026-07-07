@@ -71,43 +71,6 @@ class Player(pygame.sprite.Sprite):
 
 ```
 
----
-
-## 🚀 Cara Menjalankan Proyek Ini
-
-Pastikan kamu sudah menginstal Python di komputermu. Kemudian ikuti langkah-langkah berikut:
-
-1. **Clone repository ini:**
-```bash
-git clone [https://github.com/MandyTjandra/LBE.git](https://github.com/MandyTjandra/LBE.git)
-
-```
-
-
-2. **Masuk ke direktori proyek:**
-```bash
-cd LBE
-
-```
-
-
-3. **Instal dependensi (Pygame):**
-```bash
-pip install pygame
-
-```
-
-
-4. **Jalankan file utama:**
-```bash
-python main.py
-
-```
-
-
-
----
-
 ## 📚 Sumber Belajar Lanjutan
 
 * [Dokumentasi Resmi Pygame](https://www.pygame.org/docs/)
