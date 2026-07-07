@@ -1,4 +1,4 @@
-# Modul 6: Fungsi dan Class di Python
+# Modul Fungsi dan Class di Python
 
 Modul ini mencakup dua blok penyusun utama dalam pemrograman Python. Pertama, kita mengeksplorasi **Fungsi (*Functions*)** untuk membuat blok logika yang dapat digunakan kembali dan menangani referensi memori. Kemudian, kita mendalami **Pemrograman Berorientasi Objek (*OOP*)** untuk menyusun kode menggunakan Class dan Objek.
 
