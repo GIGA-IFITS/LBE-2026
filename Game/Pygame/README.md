@@ -1,3 +1,5 @@
+## 👾 Membuat Game di Pygame
+
 Membuat game di Pygame pada dasarnya adalah tentang memahami satu konsep utama: **Game Loop** (Siklus Game).
 
 Game loop adalah sebuah putaran (`while` loop) yang terus berjalan selama game aktif. Di dalam putaran ini, game akan melakukan tiga hal secara berurutan:
