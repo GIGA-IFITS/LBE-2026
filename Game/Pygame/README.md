@@ -1,3 +1,12 @@
+## 🛠️ Persiapan Lingkungan (Setup Environment)
+Sebelum mulai menulis kode, pastikan kamu menginstal Pygame di dalam lingkungan virtual agar rapi.
+1. Buka terminal di folder `Pygame`.
+2. Buat *virtual environment* baru: `python -m venv env`
+3. Aktifkan *environment*: `env\Scripts\activate` (Windows)
+4. Instal Pygame: `pip install -r requirements.txt`
+
+---
+
 ## 👾 Membuat Game di Pygame
 
 Membuat game di Pygame pada dasarnya adalah tentang memahami satu konsep utama: **Game Loop** (Siklus Game).
@@ -14,7 +23,7 @@ Game loop adalah sebuah putaran (`while` loop) yang terus berjalan selama game a
 
 Kita akan membuat game super sederhana: sebuah kotak biru yang bisa kamu gerakkan menggunakan tombol panah di keyboard.
 
-Pastikan kamu sudah menginstal Pygame (`pip install pygame`). Buat sebuah file bernama `main.py`, lalu ikuti dan pahami kode di bawah ini.
+Pastikan kamu sudah menginstal Pygame. Buat sebuah file bernama `main.py` (Atau gunakan file `starter_hello_world.py` untuk *Live Coding*), lalu ikuti dan pahami kode di bawah ini.
 
 ### Kode Lengkap
 

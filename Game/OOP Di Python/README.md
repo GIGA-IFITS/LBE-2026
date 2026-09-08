@@ -76,3 +76,20 @@ class Player(pygame.sprite.Sprite):
 * [Dokumentasi Resmi Pygame](https://www.pygame.org/docs/)
 * [Tutorial Sprite Pygame](https://www.pygame.org/docs/ref/sprite.html)
 * [Dokumentasi Class Python](https://docs.python.org/3/tutorial/classes.html)
+
+---
+
+## 💥 Deteksi Tabrakan (Collision Detection)
+Selain merapikan kode, alasan terbesar kita menggunakan `Sprite` dan `Rect` (Hitbox) adalah agar kita bisa mendeteksi tabrakan antar objek dengan mudah.
+
+Gunakan fungsi `colliderect()` untuk mengecek apakah dua kotak bersentuhan:
+```python
+if player.rect.colliderect(enemy.rect):
+    print("Terjadi tabrakan!")
+```
+
+### 👨‍💻 Latihan Live Coding
+Jika kamu sedang mengajarkan materi ini di kelas, silakan gunakan file `starter_oop_game.py`. Di file tersebut, minta peserta untuk:
+1. Membuat `class Enemy` dari awal.
+2. Memasukkan logika `colliderect` di dalam Game Loop.
+*(Jawaban lengkap tersedia di `jawaban_oop_game.py`)*
