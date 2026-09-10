@@ -89,7 +89,7 @@ if player.rect.colliderect(enemy.rect):
 ```
 
 ### 👨‍💻 Latihan Live Coding
-Jika kamu sedang mengajarkan materi ini di kelas, silakan gunakan file `starter_oop_game.py`. Di file tersebut, minta peserta untuk:
+Silakan gunakan file `starter_oop_game.py`. Di file tersebut, kerjakan:
 1. Membuat `class Enemy` dari awal.
 2. Memasukkan logika `colliderect` di dalam Game Loop.
 *(Jawaban lengkap tersedia di `jawaban_oop_game.py`)*
