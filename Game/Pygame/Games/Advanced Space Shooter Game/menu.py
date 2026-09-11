@@ -94,9 +94,8 @@ def draw_slider(surface, x, y, width, height, value, label):
     
     return new_value
 
-def draw_button(surface, text, x, y, width, height):
+def draw_button(surface, text, x, y, width, height, click):
     mouse_pos = pygame.mouse.get_pos()
-    click = pygame.mouse.get_pressed()[0]
     
     rect = pygame.Rect(x, y, width, height)
     on_button = rect.collidepoint(mouse_pos)
@@ -122,9 +121,12 @@ def options_loop(screen, clock):
         clock.tick(60)
         
         # Event handling
+        click = False
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return "QUIT"
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                click = True
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     return "MENU"  # Back to main menu
@@ -155,7 +157,7 @@ def options_loop(screen, clock):
             screen.blit(overlay, (0, 0))
         
         # Back button
-        back_button = draw_button(screen, "Back", WIDTH / 2 - 100, HEIGHT - 100, 200, 50)
+        back_button = draw_button(screen, "Back", WIDTH / 2 - 100, HEIGHT - 100, 200, 50, click)
         
         if back_button:
             return "MENU"
@@ -195,9 +197,12 @@ def menu_loop(screen, clock):
         clock.tick(60)
         
         # Event handling
+        click = False
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return "QUIT"
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                click = True
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     return "QUIT"
@@ -228,10 +233,10 @@ def menu_loop(screen, clock):
         draw_text(screen, descriptions[selected_ship], 24, WIDTH / 2, HEIGHT / 2 + 10)
         
         # Buttons
-        play_button = draw_button(screen, "Play", WIDTH / 2 - 100, HEIGHT / 2 + 80, 200, 50)
-        highscore_button = draw_button(screen, "High Scores", WIDTH / 2 - 100, HEIGHT / 2 + 140, 200, 50)
-        options_button = draw_button(screen, "Options", WIDTH / 2 - 100, HEIGHT / 2 + 200, 200, 50)
-        quit_button = draw_button(screen, "Quit", WIDTH / 2 - 100, HEIGHT / 2 + 260, 200, 50)
+        play_button = draw_button(screen, "Play", WIDTH / 2 - 100, HEIGHT / 2 + 80, 200, 50, click)
+        highscore_button = draw_button(screen, "High Scores", WIDTH / 2 - 100, HEIGHT / 2 + 140, 200, 50, click)
+        options_button = draw_button(screen, "Options", WIDTH / 2 - 100, HEIGHT / 2 + 200, 200, 50, click)
+        quit_button = draw_button(screen, "Quit", WIDTH / 2 - 100, HEIGHT / 2 + 260, 200, 50, click)
 
         if play_button:
             return ("PLAYING", selected_ship)

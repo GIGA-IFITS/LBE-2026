@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 import pygame
 
 # High Score Management
@@ -40,6 +41,8 @@ class HighScoreManager:
     
     def is_high_score(self, score):
         """Check if score qualifies as a high score (top 10)"""
+        if score <= 0:
+            return False
         if len(self.highscores) < 10:
             return True
         return score > self.highscores[9]['score']
@@ -72,7 +75,8 @@ def input_name_screen(screen, clock, score):
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                return None
+                pygame.quit()
+                sys.exit()
             
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:

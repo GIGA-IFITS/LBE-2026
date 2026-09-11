@@ -80,7 +80,7 @@ def main():
                 game_state = "MENU"
         elif game_state == "PLAYING":
             # Diubah dari 'game.game_loop' menjadi 'core.game_loop'
-            game_state = core.game_loop(screen, clock, assets, selected_ship)
+            game_state = core.game_loop(screen, clock, assets, highscore_manager, selected_ship)
         
         if game_state == "QUIT":
             break

@@ -2,7 +2,7 @@ import pygame
 import random
 import os
 import sys
-from highscore import HighScoreManager, input_name_screen
+from highscore import input_name_screen
 
 # -- Constants --
 HEIGHT = 700
@@ -45,7 +45,7 @@ class Player(pygame.sprite.Sprite):
         self.shoot_cooldown = 250  # 0.25 seconds in milliseconds
         
         # Health system
-        self.health = 1
+        self.health = 3
         self.max_health = 3
         
         # Powerup effects
@@ -126,16 +126,16 @@ class Player(pygame.sprite.Sprite):
         self.health = min(self.health + 1, self.max_health)
     
     def activate_ammo_boost(self):
-        """Activate ammo boost for 10 seconds"""
-        self.ammo_boost_end = pygame.time.get_ticks() + 10000
+        """Activate ammo boost for 15 seconds"""
+        self.ammo_boost_end = pygame.time.get_ticks() + 15000
     
     def activate_rocket_boost(self):
         """Activate rocket boost for 10 seconds"""
         self.rocket_boost_end = pygame.time.get_ticks() + 10000
     
     def activate_shield(self):
-        """Activate shield for 10 seconds"""
-        self.shield_end = pygame.time.get_ticks() + 10000
+        """Activate shield for 8 seconds"""
+        self.shield_end = pygame.time.get_ticks() + 8000
         self.is_shielded = True
         
     def update(self):
@@ -185,6 +185,7 @@ class Player(pygame.sprite.Sprite):
         # Apply shield visual effect
         if self.is_shielded:
             # Make ship semi-transparent when shielded
+            self.image = self.image.copy()
             self.image.set_alpha(128)
 
 class Block(pygame.sprite.Sprite):
@@ -304,12 +305,9 @@ class Powerup(pygame.sprite.Sprite):
             self.kill()
 
 # -- Main Game Loop --
-def game_loop(screen, clock, assets, selected_ship=0):
+def game_loop(screen, clock, assets, highscore_manager, selected_ship=0):
     # Import menu settings
     import menu
-    
-    # Initialize high score manager
-    highscore_manager = HighScoreManager()
     
     # Setup
     game_assets_folder = os.path.join("Assets", "PixelSpaceRage", "256px")
@@ -386,7 +384,6 @@ def game_loop(screen, clock, assets, selected_ship=0):
     game_sub_state = "PLAYING" # "PLAYING", "PAUSED", "GAME_OVER", "HIGH_SCORE_INPUT"
     last_powerup_spawn = 0
     powerup_spawn_delay = 3000  # 3 seconds
-    energy_clear_end = 0
     
     # Asteroid spawn management
     last_asteroid_spawn = 0
@@ -408,7 +405,9 @@ def game_loop(screen, clock, assets, selected_ship=0):
         for event in pygame.event.get():
             if event.type == pygame.QUIT: return "QUIT"
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE: return "QUIT"
+                if event.key == pygame.K_ESCAPE:
+                    pygame.mixer.music.stop()
+                    return "MENU"
                 if game_sub_state == "PLAYING" and event.key == pygame.K_SPACE:
                     # Check shooting cooldown
                     if player.can_shoot():
@@ -420,8 +419,6 @@ def game_loop(screen, clock, assets, selected_ship=0):
                     return "PLAYING" # Kembali ke main.py untuk restart
                 if game_sub_state == "GAME_OVER" and event.key == pygame.K_x:
                     return "MENU" # Kembali ke menu
-                if game_sub_state == "HIGH_SCORE_INPUT" and event.key == pygame.K_ESCAPE:
-                    game_sub_state = "GAME_OVER"  # Skip name input
                 if game_sub_state == "PLAYING" and event.key == pygame.K_p:
                     game_sub_state = "PAUSED"
                     pygame.mixer.music.pause()
@@ -453,15 +450,6 @@ def game_loop(screen, clock, assets, selected_ship=0):
                     spawn_new_block()
                     last_asteroid_spawn = now
             
-            # Energy powerup effect - clear enemies
-            if now < energy_clear_end:
-                for enemy in enemies:
-                    expl = Explosion(enemy.rect.center, assets['explosion_anim'])
-                    all_sprites.add(expl)
-                    score += 25  # Bonus for energy clear
-                    enemy.kill()
-                    spawn_new_block()
-                
             # Enemy-Bullet collisions
             hits = pygame.sprite.groupcollide(enemies, bullets, True, True)
             for hit in hits:
@@ -514,7 +502,12 @@ def game_loop(screen, clock, assets, selected_ship=0):
                 if powerup.powerup_type == 'Ammo':
                     player.activate_ammo_boost()
                 elif powerup.powerup_type == 'Energy':
-                    energy_clear_end = now + 2000  # 2 seconds
+                    for enemy in enemies:
+                        expl = Explosion(enemy.rect.center, assets['explosion_anim'])
+                        all_sprites.add(expl)
+                        score += 25  # Bonus for energy clear
+                        enemy.kill()
+                        spawn_new_block()
                     create_screen_explosion()
                 elif powerup.powerup_type == 'Health':
                     player.heal()
@@ -533,7 +526,7 @@ def game_loop(screen, clock, assets, selected_ship=0):
         
         # Draw health indicators
         for i in range(player.health):
-            health_x = WIDTH - 80 + (i * 35)
+            health_x = WIDTH - 115 + (i * 35)
             health_y = HEIGHT - 45
             if health_icon:
                 screen.blit(health_icon, (health_x, health_y))
