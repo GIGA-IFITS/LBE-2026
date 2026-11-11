@@ -1,5 +1,5 @@
 # 🎮 Modul Pembelajaran: Game Development & OOP (Pygame)
-### Laboratorium Grafika, Interaksi, dan Game (Lab GIGA)
+### Laboratorium Grafika, Interaksi, Gim dan Analitik (Lab GIGA)
 
 Selamat datang di modul pembelajaran **Game Development dan Object-Oriented Programming (OOP)**! 
 

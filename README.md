@@ -1,5 +1,5 @@
 # 🚀 Modul Pembelajaran Lab Based Education (LBE) 2026
-### 🎮 Laboratorium Grafika, Interaksi, dan Game (Lab GIGA)
+### 🎮 Laboratorium Grafika, Interaksi, Gim dan Analitik (Lab GIGA)
 
 Selamat datang di repositori resmi **Modul Pembelajaran LBE 2026**. Repositori ini disusun sebagai silabus dan materi ajar terstruktur untuk membimbing peserta memahami dua pilar utama dalam pengembangan produk interaktif modern: **Game Development (Logika & OOP dengan Python/Pygame)** dan **UI/UX Design (Human-Computer Interaction & Usability)**.
 
@@ -211,6 +211,6 @@ Gunakan checklist ini untuk melacak pencapaian Anda selama program LBE:
 ---
 
 <p align="center">
-  <b>Laboratorium Grafika, Interaksi, dan Game (Lab GIGA)</b><br>
+  <b>Laboratorium Grafika, Interaksi, Gim dan Analitik (Lab GIGA)</b><br>
   <i>"Crafting Interactive Worlds through Code and Design"</i>
 </p>
